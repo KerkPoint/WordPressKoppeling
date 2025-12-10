@@ -1,0 +1,20 @@
+.kp-volgende-diensten {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.kp-volgende-diensten h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.kp-volgende-diensten h3 {
+    font-size: 16px;
+    margin: 20px 0 10px;
+    font-weight: 600;
+}
+
+.kp-volgende-item p {
+    margin: 0 0 5px 0;
+}

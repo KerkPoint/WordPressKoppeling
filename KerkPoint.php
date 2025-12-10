@@ -16,16 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// Global Constanten definieren
 define( 'KERKPOINT_VERSION', '1.0.0' );
 define( 'KERKPOINT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'KERKPOINT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'KERKPOINT_TEXT_DOMAIN', 'kerkpoint' ); // Nieuwe constante voor text domain
+define( 'KERKPOINT_TEXT_DOMAIN', 'kerkpoint' );
 
-// Laad de benodigde klassen
-require_once KERKPOINT_PLUGIN_DIR . 'includes/class-api-handler.php';
-require_once KERKPOINT_PLUGIN_DIR . 'includes/class-frontend-display.php';
-require_once KERKPOINT_PLUGIN_DIR . 'includes/class-admin-settings.php';
+require_once KERKPOINT_PLUGIN_DIR . 'includes/api/api-handler.php';
+require_once KERKPOINT_PLUGIN_DIR . 'includes/frontend/frontend-display.php';
+require_once KERKPOINT_PLUGIN_DIR . 'includes/admin/admin-settings.php';
 
 // Laad de externe bibliotheek voor QR-codes
 require_once KERKPOINT_PLUGIN_DIR . 'vendor/phpqrcode/qrlib.php';
@@ -41,32 +39,26 @@ class KerkPoint {
      * Start de componenten van de plugin.
      */
     public function initialize_components() {
-        // API Handler initialiseren
         $api_handler = new KAD_API_Handler();
 
-        // Frontend Display (Shortcodes/Blocks)
         new KAD_Frontend_Display( $api_handler );
 
-        // Admin Settings
         if ( is_admin() ) {
             new KAD_Admin_Settings( $api_handler );
         }
     }
 
     public function enqueue_plugin_styles() {
-    // Registreer het style-bestand
     wp_register_style(
-        'kp-diensten-style', // Unieke handle
-        plugins_url( 'assets/css/kp-diensten-overzicht.css', __FILE__ ), // Pad naar uw CSS-bestand
-        array(), // Afhankelijkheden (geen)
-        '1.0', // Versie nummer
-        'all' // Media type
+        'kp-diensten-style',
+        plugins_url( 'assets/css/kp-diensten-overzicht.css', __FILE__ ),
+        array(),
+        '1.0',
+        'all'
     );
 
-    // Enqueue de style, dit zorgt ervoor dat het daadwerkelijk geladen wordt
     wp_enqueue_style( 'kp-diensten-style' );
     }
 }
 
-// Koppel de functie aan de juiste actie
 add_action( 'wp_enqueue_scripts', array( new KerkPoint(), 'enqueue_plugin_styles' ) );
