@@ -26,7 +26,7 @@ class KAD_Admin_Settings {
             'manage_options',
             $this->menu_slug,
             array( $this, 'create_admin_page' ),
-            plugin_dir_url( __FILE__ ) . '../assets/img/KerkPoint20x20.png',
+            plugin_dir_url( __FILE__ ) . '../../assets/img/KerkPoint20x20.png',
             2,
             60
         );
@@ -92,6 +92,21 @@ class KAD_Admin_Settings {
                 array( 'id' => $id, 'type' => $field['type'], 'desc' => $field['desc'] )
             );
         }
+
+        add_settings_section(
+            'kad_cache_section',
+            'Cache Beheer',
+            array($this, 'print_cache_section_info'),
+            $this->menu_slug
+        );
+
+        add_settings_field(
+            'kad_cache_status',
+            'Cache Status',
+            array($this, 'display_cache_controls'),
+            $this->menu_slug,
+            'kad_cache_section'
+        );
     }
 
     public function sanitize( $input ) {
@@ -121,5 +136,48 @@ class KAD_Admin_Settings {
 
     public function print_section_info() {
         print 'Voer hier de basis-URL en de Bearer-token in voor de API-verbinding.';
+    }
+
+    // Methode voor de sectie-informatie
+    public function print_cache_section_info() {
+        echo '<p>Hier kunt u de cache-status bekijken en de cache handmatig wissen.</p>';
+    }
+
+    // Methode voor de velden (status + knop)
+    public function display_cache_controls() {
+        $last_cleared = get_option('kad_cache_last_cleared');
+        if ($last_cleared) {
+            $formatted_time = date_i18n(get_option('date_format') . ' H:i:s', $last_cleared);
+            echo '<p>Laatste cache-clear: <strong>' . esc_html($formatted_time) . '</strong></p>';
+        } else {
+            echo '<p>De cache is nog nooit geleegd.</p>';
+        }
+
+        // API fetch status (als je KAD_API_Handler injecteert)
+        if ( isset($this->api_handler) && method_exists($this->api_handler, 'get_last_fetch_status') ) {
+            $last_api_fetch = $this->api_handler->get_last_fetch_status();
+            if ($last_api_fetch) {
+                echo '<p>Laatste API-oproep: <strong>' . esc_html($last_api_fetch) . '</strong></p>';
+            } else {
+                echo '<p>Er is nog geen API-oproep gedaan.</p>';
+            }
+        }
+
+        // Cache clear knop
+        echo '<form method="post">';
+        echo '<input type="hidden" name="kad_action" value="clear_cache" />';
+        wp_nonce_field('kad_clear_cache_nonce', 'kad_nonce');
+        submit_button('Cache Nu Wissen', 'secondary', 'kad_clear_cache_submit');
+        
+        if (isset($_POST['kad_action']) && $_POST['kad_action'] === 'clear_cache') {
+            if (check_admin_referer('kad_clear_cache_nonce', 'kad_nonce') && current_user_can('manage_options')) {
+                if ( isset($this->api_handler) && method_exists($this->api_handler, 'clear_cache') && $this->api_handler->clear_cache() ) {
+                    update_option('kad_cache_last_cleared', time());
+                    echo '<div class="notice notice-success is-dismissible"><p>Cache succesvol gewist!</p></div>';
+                } else {
+                    echo '<div class="notice notice-error is-dismissible"><p>Fout bij het wissen van de cache.</p></div>';
+                }
+            }
+        }
     }
 }

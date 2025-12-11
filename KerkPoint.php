@@ -24,6 +24,7 @@ define( 'KERKPOINT_TEXT_DOMAIN', 'kerkpoint' );
 require_once KERKPOINT_PLUGIN_DIR . 'includes/api/api-handler.php';
 require_once KERKPOINT_PLUGIN_DIR . 'includes/frontend/frontend-display.php';
 require_once KERKPOINT_PLUGIN_DIR . 'includes/admin/admin-settings.php';
+require_once KERKPOINT_PLUGIN_DIR . 'includes/admin/dashboard-widget.php';
 
 // Laad de externe bibliotheek voor QR-codes
 require_once KERKPOINT_PLUGIN_DIR . 'vendor/phpqrcode/qrlib.php';
@@ -45,6 +46,7 @@ class KerkPoint {
 
         if ( is_admin() ) {
             new KAD_Admin_Settings( $api_handler );
+            new KAD_Dashboard_Widget( $api_handler );
         }
     }
 

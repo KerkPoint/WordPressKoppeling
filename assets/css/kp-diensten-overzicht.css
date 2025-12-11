@@ -1,0 +1,88 @@
+.kp-diensten-overzicht {
+    margin: 40px auto;
+    max-width: 1200px;
+    font-family: Arial, sans-serif;
+    color: #2c3e50;
+}
+
+.kp-diensten-overzicht h2 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 400;
+    color: #1a2b3c;
+    margin-bottom: 30px;
+}
+
+.kp-services-columns {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.kp-service-column {
+    flex: 1 1 500px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.kp-service-column h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #34495e;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 5px;
+}
+
+.kp-service-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: inset 0 -1px 0 #ddd;
+}
+
+.kp-service-table thead th {
+    background-color: #ecf0f1;
+    text-align: left;
+    padding: 10px 15px;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.kp-service-table tbody td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.kp-service-table tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.kp-service-table tbody td strong {
+    font-weight: 600;
+    color: #34495e;
+}
+
+.kp-service-table tbody td:first-child,
+.kp-service-table tbody td:nth-child(2) {
+    color: #555;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .kp-services-columns {
+        flex-direction: column;
+    }
+
+    .kp-service-column {
+        flex: 1 1 100%;
+    }
+}
