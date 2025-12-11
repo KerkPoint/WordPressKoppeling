@@ -1,0 +1,32 @@
+{
+    "name": "kerkpoint/wordpress-integration-plugin",
+    "description": "KerkPoint WordPress Integration Plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Jorian Beukens",
+            "email": "jorian@flex-wave.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "KerkPoint\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "stable",
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "kerkpoint"
+    ]
+}
