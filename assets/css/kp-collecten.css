@@ -6,98 +6,47 @@
     font-weight: 300;
 }
 
-.kp-collecte-sectie-tabel {
-    margin-bottom: 40px;
+.kp-collecte-table-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 768px) {
+    .kp-collecte-table-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.kp-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-}
-
-.kp-collecte-datum {
-    background-color: #3498db;
-    color: #fff;
-    padding: 15px 20px;
-    font-size: 1.3em;
-    font-weight: 500;
-}
-
-.kp-collecte-datum span { font-weight: 700; margin-left: 5px; }
-
-.kp-doel-tabel {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-}
-
-.kp-doel-tabel thead th {
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    text-align: left;
-    padding: 12px 20px;
-    font-weight: 600;
-    border-bottom: 2px solid #bdc3c7;
-}
-
-.kp-doel-tabel tbody td {
-    padding: 15px 20px;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: middle;
-}
-
-.kp-doel-tabel tbody tr:hover { background-color: #f7f7f7; }
-
-.col-qr { width: 100px; text-align: center; }
-.col-link { width: 150px; text-align: center; }
-
-.doel-naam-cel strong { font-size: 1.1em; color: #333; line-height: 1.4; }
-
-.kp-donate-link-button {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #2ecc71;
-    color: #fff !important;
+    background: #fff;
+    align-items: center;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.2s, transform 0.2s;
-    white-space: nowrap;
-    border: none;
+    color: inherit;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.kp-donate-link-button:hover { background-color: #27ae60; transform: translateY(-1px); }
-
-.doel-qr-cel { text-align: center; }
-
-.qr-container {
-    display: inline-block;
-    padding: 5px;
-    border: 1px solid #eee;
-    background-color: #fff;
-    border-radius: 3px;
-    line-height: 0;
+.kp-row:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
 }
 
-.kp-qr-image { width: 75px; height: 75px; }
-
-.kp-qr-error { color: #e74c3c; font-weight: 500; display: block; font-size: 0.8em; }
-
-p.kp-error, p.kp-empty-state {
-    padding: 15px;
-    border: 1px solid #f39c12;
-    background-color: #fff3cd;
-    color: #856404;
-    border-radius: 4px;
-    text-align: center;
+.kp-cell {
+    padding: 4px 6px;
 }
 
-/* Mobile styling */
-@media (max-width: 768px) {
-    .kp-doel-tabel thead { display: none; }
-    .kp-doel-rij { border: 1px solid #ddd; margin-bottom: 10px; border-radius: 5px; }
-    .kp-doel-tabel tbody td { padding: 10px 15px; border: none; position: relative; }
-    .doel-naam-cel { background-color: #f8f8f8; border-bottom: 1px solid #eee; }
-    .doel-link-cel, .doel-qr-cel { text-align: center; }
-    .doel-link-cel:before, .doel-qr-cel:before { display: none; }
-    .kp-donate-link-button { width: 80%; text-align: center; margin: 5px 0; }
+.kp-row .doel-naam {
+    font-weight: 600;
+}
+
+.kp-row .qr {
+    text-align: right;
+}
+
+.kp-qr-image { 
+    width: 75px; 
+    height: 75px; 
 }

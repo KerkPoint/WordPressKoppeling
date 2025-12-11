@@ -62,44 +62,23 @@ class KP_Collecte {
             <h2 class="kp-collecte-titel">Collecte Doelen</h2>
             
             <?php if ( !empty( $all_goals ) ) : ?>
-                
-                <section class="kp-collecte-sectie-tabel">
-                    <table class="kp-doel-tabel">
-                        <thead>
-                            <tr>
-                                <th>Doel Naam</th>
-                                <th class="col-qr">QR Code</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ( $all_goals as $doel ) : 
-                                $link = $doel['payment_request'] ?? ''; 
-                                $doel_naam = $doel['name'] ?? 'Onbekend doel'; 
-                                $qr_code_html = $this->generate_qr_code( $link, 5, 2 ); 
-                                $expiry_date_time = $doel['payment_request_expiry'] ?? 'N.n.b.';
-                                $formatted_expiry = date_i18n( get_option('date_format') . ' H:i', strtotime($expiry_date_time) );
+                <section class="kp-collecte-table-grid">
+                    <?php foreach ( $all_goals as $doel ) :
+                        $link = $doel['payment_request'] ?? ''; 
+                        $doel_naam = $doel['name'] ?? 'Onbekend doel'; 
+                        $qr_code_html = $this->generate_qr_code( $link, 5, 2 ); 
+                        $expiry_date_time = $doel['payment_request_expiry'] ?? 'N.n.b.';
 
-                                if ( strtotime($expiry_date_time) < time() ) {
-                                    continue;
-                                }
-                            ?>
-                            <tr class="kp-doel-rij">
-                                <td data-label="Doel Naam" class="doel-naam-cel">
-                                    <a href="<?= esc_url( $link ); ?>" target="_blank" rel="noopener noreferrer" class="kp-doel-naam-link">
-                                        <?= esc_html( $doel_naam ); ?>
-                                    </a>
-                                </td>
-                                <td data-label="QR Code" class="doel-qr-cel">
-                                    <div class="qr-container">
-                                        <?= $qr_code_html; ?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                        if ( strtotime($expiry_date_time) < time() ) {
+                            continue;
+                        }
+                    ?>
+                        <a href="<?= esc_url( $link ); ?>" target="_blank" rel="noopener noreferrer" class="kp-row">
+                            <span class="kp-cell doel-naam"><?= esc_html( $doel_naam ); ?></span>
+                            <span class="kp-cell qr"><?= $qr_code_html; ?></span>
+                        </a>
+                    <?php endforeach; ?>
                 </section>
-
             <?php else : ?>
                 <p class="kp-empty-state">Er zijn momenteel geen collectedoelen beschikbaar.</p>
             <?php endif; ?>
