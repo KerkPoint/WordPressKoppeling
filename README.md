@@ -46,8 +46,19 @@ Toont alleen de eerstvolgende dag met geplande diensten, gegroepeerd per locatie
 
 ## ⚙️ Installatie
 
+De plugin kan op twee manieren geïnstalleerd worden:
+
+**1. Handmatig via WordPress**
+
 1. Upload de plugin naar de `/wp-content/plugins/` directory.
 2. Activeer de plugin via het menu **Plugins** in WordPress.
+
+**2. Via Composer**
+Voer het volgende commando uit in de root van je WordPress-project:
+
+```bash
+composer require kerkpoint/wordpress-integration-plugin
+```
 
 ---
 
@@ -73,11 +84,10 @@ Voor vragen, ondersteuning of feedback:
 * **Ontwikkelaar**: Jorian Beukens
 * **E-mail**: [jorian@kerkpoint.nl](mailto:jorian@kerkpoint.nl)
 * **Website**: [kerkpoint.nl](https://kerkpoint.nl)
-* **GitHub**: [https://github.com/KerkPoint](https://github.com/KerkPoint)
+* **GitHub**: [https://github.com/kerkpoint](https://github.com/kerkpoint)
 
 ---
 
 ## 🛡️ Licentie
 
 Deze plugin is uitgebracht onder de **GPL-licentie**.
-
