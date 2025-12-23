@@ -42,6 +42,10 @@ Toont alleen de eerstvolgende dag met geplande diensten, gegroepeerd per locatie
 * **Doel**: Compact overzicht van de eerstvolgende diensten, inclusief tijden en voorgangers.
 * **Attribuutinstellingen**: Geen. De plugin selecteert automatisch de eerstvolgende datum met diensten.
 
+### `[kp_rss_diensten id="246"]`
+
+Toont de rss feed vanuit Kerkdienstgemist die alle diensten vanuit het verleden weergeeft. id is instelbaar via de instellingen, of via id='' toe te voegen aan de shortcode. Oenenburgkerk = 246 en Dorpskerk is 247
+
 ---
 
 ## ⚙️ Installatie
@@ -73,6 +77,7 @@ composer require kerkpoint/wordpress-integration-plugin
 [kp_collecte]
 [kp_diensten dagen_vooruit="60"]
 [kp_volgende_diensten]
+[kp_rss_diensten id="246"]
 ```
 
 ---

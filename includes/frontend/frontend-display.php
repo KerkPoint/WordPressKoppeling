@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 require_once KERKPOINT_PLUGIN_DIR . 'includes/frontend/shortcodes/kp-collecte.php';
 require_once KERKPOINT_PLUGIN_DIR . 'includes/frontend/shortcodes/kp-diensten.php';
 require_once KERKPOINT_PLUGIN_DIR . 'includes/frontend/shortcodes/kp-volgende-diensten.php';
+require_once KERKPOINT_PLUGIN_DIR . 'includes/frontend/shortcodes/kp-rss-diensten.php';
 
 class KAD_Frontend_Display {
     private $api_handler;
