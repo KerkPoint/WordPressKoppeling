@@ -23,6 +23,7 @@ class KAD_Dashboard_Widget {
     }
 
     public function display_widget() {
+        echo '<img src="' . esc_url(plugin_dir_url(__FILE__) . '../../assets/img/KerkPointIcon.png') . '" alt="KerkPoint" style="height: 40px; margin-right: 8px;" /> ';
         $last_cleared = get_option('kad_cache_last_cleared');
         if ( $last_cleared ) {
             $formatted_time = date_i18n(get_option('date_format') . ' H:i:s', $last_cleared);
