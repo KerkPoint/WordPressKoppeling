@@ -1,88 +1,130 @@
-.kp-diensten-overzicht {
+/* Container & Algemeen */
+.kp-diensten-wrapper {
     margin: 40px auto;
     max-width: 1200px;
-    font-family: Arial, sans-serif;
-    color: #2c3e50;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #334155;
+    line-height: 1.5;
 }
 
-.kp-diensten-overzicht h2 {
+.kp-header {
     text-align: center;
-    font-size: 2em;
-    font-weight: 400;
-    color: #1a2b3c;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-.kp-services-columns {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
+.kp-header h2 {
+    font-size: 2.25rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+    font-weight: 700;
 }
 
-.kp-service-column {
-    flex: 1 1 500px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.kp-subtitle {
+    color: #64748b;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.kp-service-column h3 {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #34495e;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #dcdcdc;
-    padding-bottom: 5px;
+/* Grid Layout */
+.kp-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+}
+
+/* Kaart Styling */
+.kp-location-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.kp-location-card h3 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+/* Tabel Styling */
+.kp-table-responsive {
+    overflow-x: auto;
 }
 
 .kp-service-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-    background-color: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: inset 0 -1px 0 #ddd;
+    font-size: 0.95rem;
 }
 
 .kp-service-table thead th {
-    background-color: #ecf0f1;
     text-align: left;
-    padding: 10px 15px;
+    padding: 12px;
+    background: #f8fafc;
+    color: #475569;
     font-weight: 600;
-    color: #2c3e50;
-    border-bottom: 1px solid #dcdcdc;
+    font-size: 0.85rem;
+    text-transform: uppercase;
 }
 
-.kp-service-table tbody td {
-    padding: 10px 15px;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: middle;
+.kp-service-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
 }
 
-.kp-service-table tbody tr:hover {
-    background-color: #f7f7f7;
+.kp-service-table tr:last-child td {
+    border-bottom: none;
 }
 
-.kp-service-table tbody td strong {
+/* Kolom specifieke CSS */
+.kp-col-date {
+    width: 30%;
+    color: #1e293b;
+}
+
+.kp-time {
+    display: block;
     font-weight: 600;
-    color: #34495e;
+    color: #475569;
 }
 
-.kp-service-table tbody td:first-child,
-.kp-service-table tbody td:nth-child(2) {
-    color: #555;
-    font-weight: 500;
+.kp-description {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 4px;
+    line-height: 1.2;
 }
 
-@media (max-width: 768px) {
-    .kp-services-columns {
-        flex-direction: column;
+.kp-col-preacher {
+    color: #1e293b;
+}
+
+/* Foutmeldingen & Empty states */
+.kp-error, .kp-empty-state {
+    padding: 20px;
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    color: #b91c1c;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 640px) {
+    .kp-services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .kp-location-card {
+        padding: 16px;
     }
 
-    .kp-service-column {
-        flex: 1 1 100%;
+    .kp-service-table {
+        font-size: 0.85rem;
     }
 }
